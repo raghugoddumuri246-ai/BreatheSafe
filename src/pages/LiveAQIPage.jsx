@@ -190,7 +190,7 @@ const LiveAQIPage = () => {
       if (!token) return;
 
       const response = await fetch(
-        "http://localhost:5000/api/health-report/count",
+        "https://breathesafe-backend-9ftf.onrender.com/api/health-report/count",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -369,7 +369,7 @@ const LiveAQIPage = () => {
             const token = localStorage.getItem("token");
             if (token) {
               const response = await fetch(
-                "http://localhost:5000/api/aqi-tracker/save",
+                "https://breathesafe-backend-9ftf.onrender.com/api/aqi-tracker/save",
                 {
                   method: "POST",
                   headers: {
@@ -657,7 +657,7 @@ const LiveAQIPage = () => {
 
       setIsGeneratingReport(true);
       const response = await fetch(
-        "http://localhost:5000/api/health-report/generate",
+        "https://breathesafe-backend-9ftf.onrender.com/api/health-report/generate",
         {
           method: "POST",
           headers: {

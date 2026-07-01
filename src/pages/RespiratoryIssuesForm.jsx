@@ -68,7 +68,7 @@ export default function ResponsiveHorizontalForm() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/health-assessment/latest",
+        "https://breathesafe-backend-9ftf.onrender.com/api/health-assessment/latest",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -137,8 +137,8 @@ export default function ResponsiveHorizontalForm() {
       }
 
       const url = existingAssessmentId
-        ? `http://localhost:5000/api/health-assessment/${existingAssessmentId}`
-        : "http://localhost:5000/api/health-assessment";
+        ? `https://breathesafe-backend-9ftf.onrender.com/api/health-assessment/${existingAssessmentId}`
+        : "https://breathesafe-backend-9ftf.onrender.com/api/health-assessment";
 
       const response = await fetch(url, {
         method: existingAssessmentId ? "PUT" : "POST",

@@ -33,7 +33,7 @@ const HealthReportDetail = () => {
           return;
         }
 
-        const response = await fetch(`http://localhost:5000/api/health-report/reports/${id}`, {
+        const response = await fetch(`https://breathesafe-backend-9ftf.onrender.com/api/health-report/reports/${id}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
