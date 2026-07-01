@@ -68,6 +68,12 @@ ${data.updatedFields}
 };
 
 async function sendMail(to, type, data) {
+    // Render free tier blocks outbound SMTP ports (like 465/587).
+    if (process.env.RENDER) {
+        console.warn(`[Render] Skipping email dispatch to ${to} (SMTP is blocked on free tier)`);
+        return true;
+    }
+
     try {
         const template = emailTemplates[type](data);
         
