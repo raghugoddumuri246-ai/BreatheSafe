@@ -7,24 +7,21 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const fromNumber = process.env.TWILIO_FROM_NUMBER;
 
 // Verify Twilio credentials
-if (!accountSid) {
-    console.error('TWILIO_ACCOUNT_SID is missing in .env file');
-    process.exit(1);
+let twilioEnabled = true;
+if (!accountSid || !authToken || !fromNumber || !accountSid.startsWith('AC') || accountSid.includes('your_twilio_account_sid')) {
+    console.warn('\n⚠️  WARNING: Twilio credentials (TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, or TWILIO_FROM_NUMBER) are missing, invalid, or placeholder values in the .env file.');
+    console.warn('SMS alert notifications will be disabled.\n');
+    twilioEnabled = false;
 }
-if (!authToken) {
-    console.error('TWILIO_AUTH_TOKEN is missing in .env file');
-    process.exit(1);
-}
-if (!fromNumber) {
-    console.error('TWILIO_FROM_NUMBER is missing in .env file');
-    process.exit(1);
-}
-
 
 // require the Twilio module and create a REST client
-const client = require('twilio')(accountSid, authToken);
+const client = twilioEnabled ? require('twilio')(accountSid, authToken) : null;
 
 const sendSMS = async (body, toNumber) => {
+    if (!twilioEnabled) {
+        console.warn('Skipping SMS dispatch: Twilio service is not configured.');
+        return { sid: 'mock_sid', status: 'skipped' };
+    }
     if (!toNumber) {
         throw new Error('Phone number is required');
     }
