@@ -1196,14 +1196,10 @@ const DashboardPage = () => {
               </nav>
               <div className="px-2 pb-8 mt-auto">
                 <button
-                  onClick={toggleTheme}
-                  className="w-full flex items-center gap-4 px-4 py-3 rounded-lg text-gray-400 hover:bg-[#23263A] hover:text-white transition-colors">
-                  {isDarkMode ? (
-                    <FiSun className="w-6 h-6" />
-                  ) : (
-                    <FiMoon className="w-6 h-6" />
-                  )}
-                  <span>{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-4 px-4 py-3 rounded-lg text-gray-400 hover:bg-red-500 hover:text-white transition-colors">
+                  <FiLogOut className="w-6 h-6" />
+                  <span>Logout</span>
                 </button>
               </div>
             </div>
