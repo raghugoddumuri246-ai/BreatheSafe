@@ -686,13 +686,14 @@ const LiveAQIPage = () => {
       if (!response.ok) {
         if (
           response.status === 400 &&
-          data.message?.includes("health assessment")
+          data.message?.toLowerCase().includes("health assessment")
         ) {
+          const isExpired = data.message?.toLowerCase().includes("old") || data.message?.toLowerCase().includes("30 days");
           toast.error(
             <div>
-              Please complete a health assessment first.{" "}
-              <Link to="/form-input" className="text-blue-500 underline">
-                Click here to complete assessment
+              {isExpired ? "Your health assessment is over 30 days old. " : "Please complete a health assessment first. "}
+              <Link to="/form-input" className="text-blue-500 underline font-medium ml-1">
+                {isExpired ? "Click here to update assessment" : "Click here to complete assessment"}
               </Link>
             </div>
           );
